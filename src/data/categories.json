@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "title-en": "All",
+    "title-ar": "جميع الفئات",
+    "images": [{"id": 1, "imgURL": "/assets/images/categories/category-main.png"}],
+    "slug": "all-products"
+  },
+  {
+    "id": 2,
+    "title-en": "Fresh Food",
+    "title-ar": "أطعمة طازجة",
+    "images": [{"id": 1, "imgURL": "/assets/images/categories/category-main.png"}],
+    "slug": "fresh-food"
+  },
+  {
+    "id": 3,
+    "title-en": "Beverages",
+    "title-ar": "المشروبات",
+    "images": [{"id": 1, "imgURL": "/assets/images/categories/category-main.png"}],
+    "slug": "beverages"
+  }
+]

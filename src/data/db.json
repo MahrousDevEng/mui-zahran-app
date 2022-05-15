@@ -1,0 +1,34 @@
+{
+  "users": [
+    {
+      "firstName": "Mohamed",
+      "lastName": "ElSlesly",
+      "email": "mohamed.slesly8@gmail.com",
+      "mobile": "01062378258",
+      "hash": "$2a$10$1RtvWgkmpk0FpNlnckLOQ.pRgbIxyRpjpZ1RMwpCEPsEFQGzaEruW",
+      "id": 2,
+      "dateCreated": "2021-12-12T08:27:07.875Z",
+      "dateUpdated": "2021-12-12T08:27:07.875Z"
+    }
+  ],
+  "addresses": [
+    {
+      "id": 1,
+      "userID": 2,
+      "details": "27 Hello World st, Block 5, Alexandria,",
+      "label": "home",
+      "mobile": "+20106237825",
+      "firstName": "John",
+      "lastName": "Doesa",
+      "dateUpdated": "2021-12-18T22:43:16.792Z"
+    }
+  ],
+  "wishlists": [
+    {
+      "id": 1,
+      "userID": 2,
+      "itemID": 2,
+      "createdDate": "14-02-2021"
+    }
+  ]
+}
