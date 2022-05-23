@@ -64,9 +64,9 @@ const NavbarToggler = ({ lang = "en", data }) => {
               )}
             </IconButton>
           </DrawerHeader>
-          <div>
+          <>
             <AccordionCategories data={data} lang={lang} />
-          </div>
+          </>
         </>
       </MuiSwipDrawer>
     </>

@@ -1,15 +1,20 @@
 // Main Imports
 import { useState } from "react";
+import Link from "next/link";
 // MUI
 import { styled } from "@mui/material/styles";
 import MuiAccordion from "@mui/material/Accordion";
 import Typography from "@mui/material/Typography";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
-import LinearProgress from "@mui/material/LinearProgress";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
 // Icons
-import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
-import ArrowBackIosSharpIcon from "@mui/icons-material/ArrowBackIosSharp";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
+import { grey } from "@mui/material/colors";
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -34,12 +39,6 @@ const AccordionSummary = styled((props) => (
   "& .MuiAccordionSummary-expandIconWrapper": {
     color: "inherit",
   },
-  "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
-    transform: "rotate(90deg)",
-  },
-  "& .MuiAccordionSummary-content": {
-    // marginLeft: theme.spacing(1),
-  },
 }));
 
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
@@ -47,109 +46,95 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   borderTop: "1px solid rgba(0, 0, 0, .125)",
 }));
 
-const AccordionCategories = ({ data, lang }) => {
-  const [expanded, setExpanded] = useState("panel1");
+const AccordionCategories = ({ data = [], lang = "en" }) => {
+  const [expanded, setExpanded] = useState("");
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
 
-  return (
-    <>
-      {data ? (
-        <>
-          <Accordion
-            expanded={expanded === "panel1"}
-            onChange={handleChange("panel1")}
-          >
-            <AccordionSummary
-              aria-controls="panel1d-content"
-              id="panel1d-header"
-              sx={{ color: (theme) => theme.palette.primary.main }}
-              icon={
-                lang === "en" ? (
-                  <ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />
-                ) : (
-                  <ArrowBackIosSharpIcon sx={{ fontSize: "0.9rem" }} />
-                )
-              }
-            >
-              <Typography>Collapsible Group Item #1</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget.
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion
-            expanded={expanded === "panel2"}
-            onChange={handleChange("panel2")}
-          >
-            <AccordionSummary
-              aria-controls="panel2d-content"
-              id="panel2d-header"
-              sx={{ color: (theme) => theme.palette.primary.main }}
-              icon={
-                lang === "en" ? (
-                  <ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />
-                ) : (
-                  <ArrowBackIosSharpIcon sx={{ fontSize: "0.9rem" }} />
-                )
-              }
-            >
-              <Typography>Collapsible Group Item #2</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget.
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion
-            expanded={expanded === "panel3"}
-            onChange={handleChange("panel3")}
-          >
-            <AccordionSummary
-              aria-controls="panel3d-content"
-              id="panel3d-header"
-              sx={{ color: (theme) => theme.palette.primary.main }}
-              icon={
-                lang === "en" ? (
-                  <ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />
-                ) : (
-                  <ArrowBackIosSharpIcon sx={{ fontSize: "0.9rem" }} />
-                )
-              }
-            >
-              <Typography>Collapsible Group Item #3</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget.
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-        </>
-      ) : (
-        <div>
-          <LinearProgress />
-        </div>
-      )}
-    </>
-  );
+  const renderLink = (x) => {
+    return (
+      <ListItem disablePadding key={x.id}>
+        <Link href={`/${x.slug}`} passHref>
+          <ListItemButton component="a">
+            <ListItemText primary={x[`title-${lang}`]} />
+          </ListItemButton>
+        </Link>
+      </ListItem>
+    );
+  };
+
+  const renderAccordionItem = (el) => {
+    return (
+      <Accordion key={el.id} sx={{ border: "none" }}>
+        <AccordionSummary
+          aria-controls={`${el.slug}-content`}
+          id={`${el.slug}-header`}
+          sx={{
+            color: (theme) => theme.palette.primary.main,
+            "&.Mui-expanded": {
+              color: (theme) => theme.palette.common.black,
+              backgroundColor: grey["A200"],
+            },
+          }}
+          icon={<AddOutlinedIcon />}
+        >
+          <Typography>{el[`title-${lang}`]}</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <List>{renderChildren(el)}</List>
+        </AccordionDetails>
+      </Accordion>
+    );
+  };
+
+  const renderChildren = (node) => {
+    const filledChildren = node.children?.filter((el) =>
+      el.hasOwnProperty("children")
+    );
+    const emptyChildren = node.children?.filter(
+      (el) => !el.hasOwnProperty("children")
+    );
+    if (node.hasOwnProperty("children")) {
+      return [
+        ...filledChildren.map((el) => renderAccordionItem(el)),
+        ...emptyChildren?.map((el) => renderLink(el)),
+      ];
+    } else {
+      return renderLink(node);
+    }
+  };
+
+  const renderNode = (nodes) => {
+    return nodes?.map((node) => (
+      <Accordion
+        key={node.id}
+        expanded={expanded === node.slug}
+        onChange={handleChange(node.slug)}
+      >
+        <AccordionSummary
+          aria-controls={`${node.slug}-content`}
+          id={`${node.slug}-header`}
+          sx={{ color: (theme) => theme.palette.primary.main }}
+          icon={<ExpandMoreIcon />}
+        >
+          <Typography>{node[`title-${lang}`]}</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          {node.slug === "all" ? (
+            <List>
+              {nodes.filter((x) => x.slug !== "all").map((x) => renderLink(x))}
+            </List>
+          ) : (
+            <>{renderChildren(node)}</>
+          )}
+        </AccordionDetails>
+      </Accordion>
+    ));
+  };
+
+  return <>{data?.length !== 0 && renderNode(data)}</>;
 };
 
 export default AccordionCategories;

@@ -11,7 +11,7 @@ const nextConfig = {
   env: {
     PUBLIC_URL:
       process.env.NODE_ENV === "production"
-        ? "https://ps-digital-zahran-app.vercel.app/"
+        ? "https://mui-zahran-app.vercel.app/"
         : "http://localhost:3000",
   },
   ...nextTranslate(),

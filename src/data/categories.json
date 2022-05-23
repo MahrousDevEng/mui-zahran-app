@@ -3,21 +3,81 @@
     "id": 1,
     "title-en": "All",
     "title-ar": "جميع الفئات",
-    "images": [{"id": 1, "imgURL": "/assets/images/categories/category-main.png"}],
-    "slug": "all-products"
+    "images": [
+      { "id": 1, "imgURL": "/assets/images/categories/category-main.png" }
+    ],
+    "slug": "all"
   },
   {
     "id": 2,
     "title-en": "Fresh Food",
     "title-ar": "أطعمة طازجة",
-    "images": [{"id": 1, "imgURL": "/assets/images/categories/category-main.png"}],
-    "slug": "fresh-food"
+    "images": [
+      { "id": 1, "imgURL": "/assets/images/categories/category-main.png" }
+    ],
+    "slug": "fresh-food",
+    "children": [
+      {
+        "id": 1,
+        "title-en": "Cold Cuts & Deli",
+        "title-ar": "لحود باردة و مقبلات",
+        "slug": "cold-cuts-and-deli",
+        "children": [
+          {
+            "id": 1,
+            "title-en": "Cold Cuts",
+            "title-ar": "لحود باردة",
+            "slug": "cold-cuts"
+          },
+          {
+            "id": 2,
+            "title-en": "Olives & Antipasti",
+            "title-ar": "زيتون و مقبلات",
+            "slug": "olives-and-antipasti"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title-en": "Dairy & Eggs",
+        "title-ar": "منتجات الألبان والبيض",
+        "slug": "dairy-and-eggs"
+      },
+      {
+        "id": 3,
+        "title-en": "Fish & Seafood",
+        "title-ar": "السمك و المأكولات البحرية",
+        "slug": "fish-and-seafood"
+      }
+    ]
   },
   {
     "id": 3,
     "title-en": "Beverages",
     "title-ar": "المشروبات",
-    "images": [{"id": 1, "imgURL": "/assets/images/categories/category-main.png"}],
-    "slug": "beverages"
+    "images": [
+      { "id": 1, "imgURL": "/assets/images/categories/category-main.png" }
+    ],
+    "slug": "beverages",
+    "children": [
+      {
+        "id": 1,
+        "title-en": "Coffee",
+        "title-ar": "قهوة",
+        "slug": "coffee"
+      },
+      {
+        "id": 2,
+        "title-en": "Juices",
+        "title-ar": "العصائر",
+        "slug": "juices"
+      },
+      {
+        "id": 3,
+        "title-en": "Kids Drinks",
+        "title-ar": "مشروبات الأطفال",
+        "slug": "kids-drinks"
+      }
+    ]
   }
 ]
